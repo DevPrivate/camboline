@@ -1,0 +1,14 @@
+.text-center
+  .row
+    - @products.each do |product|
+      .col-xs-6.col-sm-4
+        .thumbnail
+          = image_tag product.image.url
+          .caption
+            %h3= product.name
+            %p= number_to_currency(product.price)
+            = link_to 'Show', product, class: 'btn btn-link'
+            = link_to 'Edit', edit_product_path(product), class: 'btn btn-link'
+            = link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-link'
+
+= link_to 'New Product', new_product_path, class: 'btn btn-link'

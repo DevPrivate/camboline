@@ -13,6 +13,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'haml'
 gem 'haml-rails'
+gem "paperclip"
+gem 'bootstrap-sass'
+
 # gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 group :development, :test do
