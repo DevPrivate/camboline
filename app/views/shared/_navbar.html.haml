@@ -10,8 +10,13 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li
-          %a{:href => "/pages/about"}
-            About
-            %span.sr-only (current)
-        %li
-          %a{:href => "/pages/contact"} Contact
+          = link_to 'About', pages_about_path
+          %span.sr-only (current)
+        %li= link_to 'Contact', pages_contact_path
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li= link_to 'Edit Profile', edit_user_registration_path
+          %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
+        - else
+          %li= link_to 'Sign In', new_user_session_path
+          %li= link_to 'Sign Up', new_user_registration_path
