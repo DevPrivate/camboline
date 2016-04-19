@@ -9,6 +9,7 @@
     %p= number_to_currency(@product.price)
     %p= @product.description
 
-= link_to 'Edit', edit_product_path(@product), class: 'btn btn-link'
-\|
+- if current_user == @product.user
+  = link_to 'Edit', edit_product_path(@product), class: 'btn btn-link'
+  \|
 = link_to 'Back', products_path, class: 'btn btn-link'

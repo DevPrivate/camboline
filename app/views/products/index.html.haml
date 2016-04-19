@@ -3,15 +3,15 @@
     - @products.each do |product|
       .col-md-3
         .thumbnail
-          = image_tag product.image.url
+          = link_to image_tag(product.image.url), product
           .caption
             %h3= product.name
             %p= number_to_currency(product.price)
             %p
-              Sold by #{ product.user.name }
-            = link_to 'Show', product, class: 'btn btn-link'
-            = link_to 'Edit', edit_product_path(product), class: 'btn btn-link'
-            = link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-link'
+              Sold by #{product.user.name}
+            - if (user_signed_in?) && (current_user == product.user)
+              = link_to 'Edit', edit_product_path(product), class: 'btn btn-link'
+              = link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-link'
 
-
-= link_to 'New Product', new_product_path, class: 'btn btn-link'
+- if user_signed_in?
+  = link_to 'New Product', new_product_path, class: 'btn btn-link'
