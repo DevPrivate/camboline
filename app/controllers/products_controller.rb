@@ -1,7 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:yourproducts, :new, :edit, :create, :update, :destroy]
   before_action :check_user, only: [:edit, :update, :destroy]
+
+  def yourproducts
+    @products = Product.where(user: current_user)
+  end
 
   # GET /products
   # GET /products.json

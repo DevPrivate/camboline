@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :products
+  get 'yourproducts', to: 'products#yourproducts'
 
   get 'pages/about'
 
