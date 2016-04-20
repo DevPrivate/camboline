@@ -51,3 +51,13 @@ body {
     margin: 0px;
   }
 }
+
+.jumbotron {
+  background-image: url(banner.png);
+  background-size:  1140px 300px;
+  background-repeat: no-repeat, repeat;
+  h1, h2 {
+    color: white;
+    font-family: Helvetica, Ubuntu, Arial;
+  }
+}
