@@ -1,17 +1,24 @@
-.text-center
-  .row
-    - @products.each do |product|
-      .col-md-3
-        .thumbnail
-          = link_to image_tag(product.image.url), product
-          .caption
-            %h3= product.name
-            %p= number_to_currency(product.price)
-            %p
-              Sold by #{product.user.name}
-            - if (user_signed_in?) && (current_user == product.user)
-              = link_to 'Edit', edit_product_path(product), class: 'btn btn-link'
-              = link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-link'
-
+%table.table.table-striped.table-bordered
+  %tr
+    %th.text-center Image
+    %th.text-center Name
+    %th.text-center Description
+    %th.text-center Price
+    %th.text-center Action
+  - @products.each do |product|
+    %tr
+      %td= image_tag product.image.url(:thumb)
+      %td= product.name
+      %td= product.description
+      %td= number_to_currency(product.price)
+      %td
+        .btn-group
+          %button.btn.btn-primary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+            Action
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to 'View', product
+            %li= link_to 'Edit', edit_product_path(product)
+            %li= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
 - if user_signed_in?
   = link_to 'New Product', new_product_path, class: 'btn btn-link'
